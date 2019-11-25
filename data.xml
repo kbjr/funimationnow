@@ -1,0 +1,184 @@
+
+<items>
+  <item>
+    <analytics>
+      <category>Products</category>
+      <label>Drama, Sci Fi: PSYCHO-PASS: </label>
+      <click>
+        <action>Click</action>
+      </click>
+      <display>
+        <action>Impression</action>
+      </display>
+    </analytics>
+    <title>PSYCHO-PASS</title>
+    <themes>search</themes>
+    <thumbnail>
+                https://derf9v1xhwwx1.cloudfront.net/image/upload/c_fill,h_380,w_444,q_60/oth/FunimationStoreFront/1623173/English/1623173_English_ShowThumbnail_989fb4ae-6b62-e711-8175-020165574d09.jpg
+                
+      <alternate platforms="android,ios,windows,winphone">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_347,w_430,q_60/oth/FunimationStoreFront/1623173/English/1623173_English_ShowThumbnail_989fb4ae-6b62-e711-8175-020165574d09.jpg</alternate>
+      <alternate platforms="firetv">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_532,w_660,q_60/oth/FunimationStoreFront/1623173/English/1623173_English_ShowThumbnail_989fb4ae-6b62-e711-8175-020165574d09.jpg</alternate>
+      <alternate platforms="appletv">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_322,w_399,q_60/oth/FunimationStoreFront/1623173/English/1623173_English_ShowThumbnail_989fb4ae-6b62-e711-8175-020165574d09.jpg</alternate>
+      <alternate platforms="xbox360">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_fill,g_north,h_187,w_256,q_60/oth/FunimationStoreFront/1623173/English/1623173_English_ShowThumbnail_989fb4ae-6b62-e711-8175-020165574d09.jpg</alternate>
+      <alternate platforms="roku">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_532,w_660,q_60/oth/FunimationStoreFront/1623173/English/1623173_English_ShowThumbnail_989fb4ae-6b62-e711-8175-020165574d09.jpg</alternate>
+    </thumbnail>
+    <id>29962</id>
+    <starRating>
+      <name>userRating</name>
+      <data>
+        <target>invoke</target>
+        <path>rating/</path>
+        <params>asset_id=PSY</params>
+      </data>
+      <rating>4.72935404742</rating>
+    </starRating>
+    <ratings>
+      <tv region="CA">18</tv>
+      <tv region="zw-movies">18</tv>
+      <tv region="US">TV-MA</tv>
+      <tv region="IE">MA</tv>
+    </ratings>
+    <content>
+      <metadata>
+        <recentlyAdded>added {1558130400} ago</recentlyAdded>
+        <format>HD (1080p)</format>
+        <releaseYear>2012</releaseYear>
+      </metadata>
+    </content>
+    <pointer platforms="windows,android,ios,firetv,winphone,roku">
+      <target>list2d</target>
+      <path>detail/</path>
+      <params>pk=29962</params>
+      <themes>detail</themes>
+      <alternate platforms="xbox360">
+        <target>pivot</target>
+        <path>xbox360/pivot/show/</path>
+        <params>id=29962</params>
+      </alternate>
+    </pointer>
+    <legend>
+      <button>
+        <button>Y</button>
+        <pointer>
+          <target>togglewatchlist</target>
+          <toggle>
+            <name>myqueue</name>
+            <add>
+              <analytics>
+                <click>
+                  <category>Queue</category>
+                  <action>Add</action>
+                  <label>PSY</label>
+                </click>
+              </analytics>
+            </add>
+            <remove>
+              <analytics>
+                <click>
+                  <category>Queue</category>
+                  <action>Remove</action>
+                  <label>PSY</label>
+                </click>
+              </analytics>
+            </remove>
+            <data>
+              <target>invoke</target>
+              <path>myqueue/</path>
+              <params>id=PSY</params>
+            </data>
+          </toggle>
+        </pointer>
+      </button>
+    </legend>
+  </item>
+  <item>
+    <analytics>
+      <category>Products</category>
+      <label>Action/Adventure, Comedy, Drama: Mob Psycho 100: </label>
+      <click>
+        <action>Click</action>
+      </click>
+      <display>
+        <action>Impression</action>
+      </display>
+    </analytics>
+    <title>Mob Psycho 100</title>
+    <themes>search</themes>
+    <thumbnail>
+                https://derf9v1xhwwx1.cloudfront.net/image/upload/c_fill,h_380,w_444,q_60/oth/FunimationStoreFront/2070801/English/2070801_English_ShowThumbnail_24eeb694-c4df-e911-82a8-dd291e252010.jpg
+                
+      <alternate platforms="android,ios,windows,winphone">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_347,w_430,q_60/oth/FunimationStoreFront/2070801/English/2070801_English_ShowThumbnail_24eeb694-c4df-e911-82a8-dd291e252010.jpg</alternate>
+      <alternate platforms="firetv">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_532,w_660,q_60/oth/FunimationStoreFront/2070801/English/2070801_English_ShowThumbnail_24eeb694-c4df-e911-82a8-dd291e252010.jpg</alternate>
+      <alternate platforms="appletv">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_322,w_399,q_60/oth/FunimationStoreFront/2070801/English/2070801_English_ShowThumbnail_24eeb694-c4df-e911-82a8-dd291e252010.jpg</alternate>
+      <alternate platforms="xbox360">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_fill,g_north,h_187,w_256,q_60/oth/FunimationStoreFront/2070801/English/2070801_English_ShowThumbnail_24eeb694-c4df-e911-82a8-dd291e252010.jpg</alternate>
+      <alternate platforms="roku">https://derf9v1xhwwx1.cloudfront.net/image/upload/c_crop,x_78,y_396,h_2664,w_3300/c_scale,h_532,w_660,q_60/oth/FunimationStoreFront/2070801/English/2070801_English_ShowThumbnail_24eeb694-c4df-e911-82a8-dd291e252010.jpg</alternate>
+    </thumbnail>
+    <id>186306</id>
+    <starRating>
+      <name>userRating</name>
+      <data>
+        <target>invoke</target>
+        <path>rating/</path>
+        <params>asset_id=MOB</params>
+      </data>
+      <rating>4.79112315772</rating>
+    </starRating>
+    <ratings>
+      <tv region="US">TV-14</tv>
+      <tv region="CA">14</tv>
+      <tv region="zw-movies">15</tv>
+    </ratings>
+    <content>
+      <metadata>
+        <recentlyAdded>added {1569376800} ago</recentlyAdded>
+        <format>HD (1080p)</format>
+        <releaseYear>2016</releaseYear>
+      </metadata>
+    </content>
+    <pointer platforms="windows,android,ios,firetv,winphone,roku">
+      <target>list2d</target>
+      <path>detail/</path>
+      <params>pk=186306</params>
+      <themes>detail</themes>
+      <alternate platforms="xbox360">
+        <target>pivot</target>
+        <path>xbox360/pivot/show/</path>
+        <params>id=186306</params>
+      </alternate>
+    </pointer>
+    <legend>
+      <button>
+        <button>Y</button>
+        <pointer>
+          <target>togglewatchlist</target>
+          <toggle>
+            <name>myqueue</name>
+            <add>
+              <analytics>
+                <click>
+                  <category>Queue</category>
+                  <action>Add</action>
+                  <label>MOB</label>
+                </click>
+              </analytics>
+            </add>
+            <remove>
+              <analytics>
+                <click>
+                  <category>Queue</category>
+                  <action>Remove</action>
+                  <label>MOB</label>
+                </click>
+              </analytics>
+            </remove>
+            <data>
+              <target>invoke</target>
+              <path>myqueue/</path>
+              <params>id=MOB</params>
+            </data>
+          </toggle>
+        </pointer>
+      </button>
+    </legend>
+  </item>
+</items>

@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "outDir": "build",
+        "rootDir": "src",
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": false,
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "plugins": [{
+            "name": "tslint-language-service"
+        }]
+    },
+    "moduleResolution": "node",
+    "typeRoots": [
+        "./node_modules/@types/"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
