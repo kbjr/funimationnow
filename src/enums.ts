@@ -1,8 +1,4 @@
 
-export enum Territory {
-	UnitedStates = 'US'
-}
-
 export enum Audio {
 	English = 1,
 	Japanese = 2

@@ -1,5 +1,5 @@
 
-import { Audio, DeviceCategory, DeviceType, SubTitle, Territory, UserRole, UserType } from './enums';
+import { Audio, UserRole, UserType } from './enums';
 
 /** A pointer to another location on the API */
 export interface ApiPointerData {

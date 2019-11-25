@@ -1,5 +1,5 @@
 
-import { Territory, Audio } from './enums';
+import { Audio } from './enums';
 import { stringify } from 'querystring';
 
 import {
@@ -25,7 +25,7 @@ import {
 export interface FunimationApiOptions {
 	hostname?: string;
 	token?: string;
-	territory: Territory;
+	territory: string;
 }
 
 export interface Headers {
@@ -35,7 +35,7 @@ export interface Headers {
 export class FunimationApi {
 	protected hostname: string = 'prod-api-funimationnow.dadcdigital.com';
 	protected token: string;
-	protected territory: Territory;
+	protected territory: string;
 
 	constructor(options?: FunimationApiOptions) {
 		if (options) {
