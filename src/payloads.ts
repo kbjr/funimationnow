@@ -358,3 +358,11 @@ export interface PlayerData {
 		};
 	};
 }
+
+export interface MatureContentErrorData {
+	error: {
+		errorCode: 200;
+		techErrorMessage: string;
+		userErrorMessage: string;
+	};
+}

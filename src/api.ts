@@ -14,7 +14,8 @@ import {
 	LoginResponseData,
 	SearchResponseData,
 	ShowDetailsData,
-	PlayerData
+	PlayerData,
+	MatureContentErrorData
 } from './payloads';
 
 import {
@@ -196,12 +197,20 @@ export class FunimationApi {
 			watched: 0
 		});
 
-		const res = await this.requestXml<PlayerData>('GET', `/xml/player/?${querystring}`);
+		const res = await this.requestXml<PlayerData | MatureContentErrorData>('GET', `/xml/player/?${querystring}`);
 
 		if (res.status !== 200) {
 			throw new HttpError(res);
 		}
 
+		if (isMatureContent(res.payload)) {
+			throw new Error(res.payload.error.userErrorMessage);
+		}
+
 		console.log(res.payload.player);
 	}
 }
+
+const isMatureContent = (payload: PlayerData | MatureContentErrorData) : payload is MatureContentErrorData => {
+	return !! (payload as MatureContentErrorData).error;
+};

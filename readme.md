@@ -255,3 +255,75 @@ X-Iinfo: 3-55901563-55923983 SNNy RT(1574719643708 156852) q(0 0 0 -1) r(3 3) U1
 - `/longList/items/item[*]/legend/filter` - Contains additional filters when playing this episode, like available audio languages
 - `/longList/items/item[*]/pointer/params` - Contains the parameters needed to request the actual video
 - `/longList/items/item[*]/content/description` - Contains the description for the episode
+
+
+
+
+---
+
+### Get Video Player Details
+
+To get the video player details, you need the show ID and the video ID. Optionally, you can also pass an audio language ID.
+
+#### Request
+
+```http
+> GET /xml/player/?territory=US&showId=29962&watched=0&audio=1&id=4463 HTTP/1.1
+> Host: prod-api-funimationnow.dadcdigital.com
+> Authorization: Token .....
+> Accept: */*
+```
+
+#### Response
+
+```http
+HTTP/1.1 200 OK
+Content-Language: en
+Content-Type: application/xhtml+xml
+Date: Mon, 25 Nov 2019 23:43:11 GMT
+Server: nginx
+Vary: Accept-Language, Cookie
+X-FRAME-OPTIONS: SAMEORIGIN
+transfer-encoding: chunked
+Connection: keep-alive
+X-CDN: Incapsula
+X-Iinfo: 8-69381623-69396895 PNNy RT(1574725309085 81071) q(0 0 0 -1) r(13 13) U16
+
+<player>
+  <customPanel>.....</customPanel>
+  <item>
+    <video>.....</video>
+    <ratings>.....</ratings>
+    <hls>
+      <url>.....</url>
+      <closedCaptionUrl>.....</closedCaptionUrl>
+    </hls>
+    <related>.....</related>
+    <history>.....</history>
+  </item>
+</player>
+```
+
+- `/player/item/hls/url` - Contains the URL to the actual video stream
+
+
+
+This endpoint can also "fail" with a mature content error (still a 200 response):
+
+```http
+HTTP/1.1 200 OK
+Content-Language: en
+Content-Type: application/xhtml+xml
+Date: Mon, 25 Nov 2019 23:41:49 GMT
+Server: nginx
+Vary: Accept-Language, Cookie
+X-FRAME-OPTIONS: SAMEORIGIN
+Content-Length: 180
+Connection: keep-alive
+
+<error>
+  <errorCode>200</errorCode>
+  <techErrorMessage>Mature Content</techErrorMessage>
+  <userErrorMessage>This video contains mature content.</userErrorMessage>
+</error>
+```
