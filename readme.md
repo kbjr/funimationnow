@@ -34,7 +34,11 @@ const fateZero = await api.getShowDetails(shows[0].id);
 
 ## Apendix: FunimationNow API Calls
 
+Note: All of the endpoint paths here end with a trailing slash (/). This is actually important. If you don't include it, you will always get back a 301 response, telling you try again with a trailing slash.
 
+
+
+---
 
 #### Login
 
@@ -91,10 +95,10 @@ X-Iinfo: 14-39338901-39326001 PNNy RT(1574651467757 58) q(0 0 0 0) r(5 5) U6
 </authentication>
 ```
 
+
+
+
 ---
-
-
-
 
 #### Show Search
 
@@ -128,5 +132,65 @@ X-Iinfo: 5-69366219-69388309 PNNN RT(1574717811133 116730) q(0 0 0 -1) r(3 3) U1
   <item>
     .....
   </item>
+  <item>
+    .....
+  </item>
+  <item>
+    .....
+  </item>
 </items>
+```
+
+The most interesting paths in the response are:
+
+- `/items/item/id` - The show ID, needed to make further requests for more details
+- `/items/item/title` - The title of the show
+- `/items/item/thumbnail` - Various versions of the thumbnail image to display for the show
+- `/items/item/starRating/rating` - The current star rating (out of 5) assigned to the show
+- `/items/item/ratings` - The rating of the show (like TV-14) for various regions
+
+
+
+
+---
+
+#### Get Show Details
+
+To get further details about a show, you need the ID assigned to the show (such as from the search endpoint above). Authentication does seem to have an impact on what you get back from this endpoint, but I haven't dug in far enough to see what, exactly, is different. The core details do come back regardless of authentication.
+
+The show ID goes in the query string, in the `pk` parameter.
+
+##### Request
+
+```http
+GET /xml/detail/?territory=US&pk=29962 HTTP/1.1
+Host: prod-api-funimationnow.dadcdigital.com
+Accept: */*
+Authorization: Token ......
+```
+
+#### Response
+
+```http
+HTTP/1.1 200 OK
+Content-Language: en
+Content-Type: application/xhtml+xml
+Date: Mon, 25 Nov 2019 21:45:34 GMT
+Server: nginx
+Vary: Accept-Language, Cookie
+X-FRAME-OPTIONS: SAMEORIGIN
+transfer-encoding: chunked
+Connection: keep-alive
+X-CDN: Incapsula
+X-Iinfo: 8-67658706-67657388 PNNy RT(1574718322750 10288) q(0 0 0 -1) r(19 19) U16
+
+<list2d>
+  <analytics>.....</analytics>
+  <title>Detail</title>
+  <logo>.....</logo>
+  <themes>detail</themes>
+  <hero>.....</hero>
+  <pointer>.....</pointer>
+  <pointer>.....</pointer>
+</list2d>
 ```
