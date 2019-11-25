@@ -1,5 +1,5 @@
 
-import { Territory } from './enums';
+import { Territory, Audio } from './enums';
 import { stringify } from 'querystring';
 
 import {
@@ -13,11 +13,13 @@ import {
 
 import {
 	LoginResponseData,
-	SearchResponseData
+	SearchResponseData,
+	ShowDetailsData
 } from './payloads';
 
 import {
-	SearchResult
+	SearchResult,
+	ShowDetails
 } from './entities';
 
 export interface FunimationApiOptions {
@@ -124,17 +126,81 @@ export class FunimationApi {
 
 		const res = await this.requestXml<SearchResponseData>('GET', `/xml/longlist/content/page/?${querystring}`);
 
+		if (res.status !== 200) {
+			throw new HttpError(res);
+		}
+
 		return res.payload.items.item.map((item) => new SearchResult(item));
 	}
 
+	/**
+	 * Get the full details for a show by ID
+	 *
+	 * @param showId The ID of the show to load data for
+	 */
 	public async getShowDetails(showId: number) {
 		const querystring = stringify({
 			territory: this.territory,
 			pk: showId
 		});
 
-		const res = await this.requestXml('GET', `/xml/detail/?${querystring}`);
+		const res = await this.requestXml<ShowDetailsData>('GET', `/xml/detail/?${querystring}`);
 
-		console.log(res)
+		if (res.status !== 200) {
+			throw new HttpError(res);
+		}
+
+		const result = new ShowDetails(res.payload);
+
+		console.log(result);
+
+		return result;
+	}
+
+	/**
+	 * Get the episode list for a given show. Optionally, a query can be provided to control
+	 * which episodes to retrieve (like which season), based on the filters defined in the
+	 * response itself.
+	 *
+	 * @param showId The ID of the show to load episodes for
+	 * @param query Any additional query filters
+	 */
+	public async getShowEpisodes(showId: number, query?: object) {
+		const querystring = stringify(Object.assign(query || { }, {
+			territory: this.territory,
+			show: showId
+		}));
+
+		const res = await this.requestXml('GET', `/xml/longlist/episodes/?${querystring}`);
+
+		if (res.status !== 200) {
+			throw new HttpError(res);
+		}
+
+		console.log(res);
+	}
+
+	/**
+	 * Get the video player details for a specific video
+	 *
+	 * @param showId The ID of the show
+	 * @param id The ID of the specific video
+	 */
+	public async getPlayer(showId: number, videoId: number, audio: Audio) {
+		const querystring = stringify({
+			territory: this.territory,
+			showId: showId,
+			id: videoId,
+			audio: audio,
+			watched: 0
+		});
+
+		const res = await this.requestXml('GET', `/xml/player/?${querystring}`);
+
+		if (res.status !== 200) {
+			throw new HttpError(res);
+		}
+
+		console.log(res);
 	}
 }

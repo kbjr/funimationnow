@@ -25,6 +25,12 @@ export interface RatingData {
 	}
 }
 
+export interface StarRatingData {
+	name: 'userRating';
+	data: ApiPointerData;
+	rating: number;
+}
+
 /** Response from the login API call */
 export interface LoginResponseData {
 	authentication: {
@@ -45,7 +51,7 @@ export interface LoginResponseData {
 }
 
 export interface ThumbnailData {
-	'#text': string;
+	'#text'?: string;
 	alternate: {
 		'#text': string;
 		attr: {
@@ -64,11 +70,7 @@ export interface SearchResultData {
 	themes: 'search';
 	thumbnail: ThumbnailData;
 	id: number;
-	starRating: {
-		name: 'userRating';
-		data: ApiPointerData;
-		rating: number;
-	};
+	starRating: StarRatingData;
 	ratings: {
 		tv: RatingData[];
 	};
@@ -98,6 +100,142 @@ export interface SearchResponseData {
 	};
 }
 
+export interface ButtonData {
+	title: string;
+	value: string;
+}
+
+export interface WatchNextData {
+	attr: {
+		platforms: string;
+	};
+	pointer: {
+		path: string;
+		params: string;
+	};
+}
+
+export interface ShowDetailsEpisodesData {
+	item: {
+		analytics: {
+			category: string;
+			pageName: string;
+			screenName: string;
+			click: {
+				action: string;
+				label: string;
+			};
+			display: {
+				action: string;
+				label: string;
+			};
+		};
+		title: string;
+		subtitle: string;
+		thumbnail: ThumbnailData;
+		id: number;
+		themes: 'detailEpisode';
+		legend: {
+			button: {
+				attr: {
+					platforms: string;
+				};
+				button: string;
+				title: string;
+				pointer: {
+					target: string;
+					path: string;
+					params: string;
+				};
+				analytics: {
+					category: 'Products';
+					click: {
+						action: 'Click';
+						label: string;
+					};
+				};
+			};
+			/**
+			 * Contains all of the various additional filters available for this episode. Contains things like
+			 * available audio languages.
+			 */
+			filter: {
+				attr: {
+					platforms: string;
+				};
+				name: string;
+				param: string;
+				currentValue: string;
+				choices: {
+					button: ButtonData | ButtonData[];
+				};
+			};
+			/** Contains all of the actual video player data */
+			pointer: {
+				target: 'player';
+				path: 'player/';
+				/** Contains the params needed to access the player data. This is our real goal for streaming */
+				params: string;
+				themes: 'fullsizePlayer';
+				alternate: {
+					// Various data here for options are various platforms that don't really matter atm...
+				};
+				ratings: {
+					tv: RatingData[];
+				};
+				starRating: StarRatingData;
+				content: {
+					/** The episode description */
+					description: string;
+					metadata: {
+						format: string;
+						languages: string;
+						/** Duration of the episode in milliseconds */
+						duration: number;
+						episodeNumber: number;
+						contentType: string;
+					};
+				};
+				history: {
+					name: 'history';
+					data: ApiPointerData;
+				};
+			};
+		};
+	}[];
+}
+
+export interface ShowDetailsEpisodesListData {
+	target: 'longlist';
+	path: 'longlist/episodes/';
+	params: string;
+	themes: 'vertical';
+	longList: {
+		background: ThumbnailData;
+		themes: 'vertical';
+		palette: {
+			/*
+			 * Contains all of the various additional filters available for the show. Contains things like
+			 * seasons and versions of the show.
+			 */
+			filter: {
+				name: string;
+				path?: 'longlist/episodes/';
+				param: string;
+				currentValue: string;
+				choices: {
+					button: ButtonData | ButtonData[];
+				};
+			}[];
+		};
+		items: [ WatchNextData, ShowDetailsEpisodesData ];
+	};
+}
+
+export interface ShowDetailsSimilarShowsData {
+	// 
+}
+
 /** Response from the get show details API call */
 export interface ShowDetailsData {
 	list2d: {
@@ -117,10 +255,19 @@ export interface ShowDetailsData {
 			item: {
 				title: string;
 				subtitle: string;
+				thumbnail: ThumbnailData;
+				themes: 'hero';
+				starRating: StarRatingData;
+				ratings: RatingData[];
+				content: {
+					description: string;
+					metadata: {
+						format: string;
+						releaseYear: number;
+					};
+				};
 			};
 		};
-		pointer: {
-			// 
-		}[];
+		pointer: [ ShowDetailsEpisodesListData, ShowDetailsSimilarShowsData ];
 	};
 }

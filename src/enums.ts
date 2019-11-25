@@ -4,8 +4,8 @@ export enum Territory {
 }
 
 export enum Audio {
-	English = 'en',
-	Japanese = 'jp'
+	English = 1,
+	Japanese = 2
 }
 
 export enum Platform {
@@ -27,24 +27,12 @@ export enum ThumbnailStyle {
 	XXXHDPI = 'xxxhdpi'
 }
 
-export enum SubTitle {
-	// 
-}
-
+/** There are almost certainly other options here, but there's no way to discover them */
 export enum UserType {
 	FunimationSubscriptionUser = 'FunimationSubscriptionUser'
 }
 
+/** There are almost certainly other options here, but there's no way to discover them */
 export enum UserRole {
 	USPremiumPlusMonthly = 'US Premium Plus Monthly - (US Premium Legacy)'
-}
-
-export enum DeviceCategory {
-	App = 'App',
-	Console = 'Console'
-}
-
-export enum DeviceType {
-	Win8 = 'Win8',
-	Android = 'Android Phone'
 }
