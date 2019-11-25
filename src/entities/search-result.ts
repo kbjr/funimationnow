@@ -46,6 +46,6 @@ const parseRecentlyAdded = (text: string) => {
 	const match = recentlyAddedPattern.exec(text);
 
 	if (match) {
-		return new Date(parseInt(match[1], 10));
+		return new Date(parseInt(match[1], 10) * 1000);
 	}
 };

@@ -122,8 +122,19 @@ export class FunimationApi {
 			q: query
 		});
 
-		const res = await this.requestXml<SearchResponseData>('GET', `/xml/longlist/content/page?${querystring}`);
+		const res = await this.requestXml<SearchResponseData>('GET', `/xml/longlist/content/page/?${querystring}`);
 
 		return res.payload.items.item.map((item) => new SearchResult(item));
+	}
+
+	public async getShowDetails(showId: number) {
+		const querystring = stringify({
+			territory: this.territory,
+			pk: showId
+		});
+
+		const res = await this.requestXml('GET', `/xml/detail/?${querystring}`);
+
+		console.log(res)
 	}
 }

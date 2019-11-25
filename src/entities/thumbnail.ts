@@ -1,10 +1,11 @@
 
-import { Platform } from '../enums';
 import { ThumbnailData } from '../payloads';
+import { Platform, ThumbnailStyle } from '../enums';
 
 export interface ThumbnailAlternate {
 	location: string;
-	platforms: Platform[];
+	platforms?: Platform[];
+	styleIds?: ThumbnailStyle[];
 }
 
 export class Thumbnail {
@@ -13,13 +14,24 @@ export class Thumbnail {
 
 	constructor(raw: ThumbnailData) {
 		this.location = raw['#text'];
-		this.alternates = raw.alternate.map((alternate) => {
-			return {
-				location: alternate['#text'],
-				platforms: alternate.attr.platforms.split(',') as Platform[]
-			};
-		});
+		this.alternates = raw.alternate.map(processAlternate);
 
 		Object.freeze(this);
 	}
 }
+
+const processAlternate = (alternate: ThumbnailData['alternate'][0]) => {
+	const result: ThumbnailAlternate = {
+		location: alternate['#text']
+	};
+
+	if (alternate.attr.platforms) {
+		result.platforms = alternate.attr.platforms.split(',') as Platform[];
+	}
+
+	if (alternate.attr.styleIds) {
+		result.styleIds = alternate.attr.styleIds.split(',') as ThumbnailStyle[];
+	}
+
+	return result;
+};

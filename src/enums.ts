@@ -19,6 +19,14 @@ export enum Platform {
 	Xbox360 = 'xbox360'
 }
 
+export enum ThumbnailStyle {
+	MDPI = 'mdpi',
+	HDPI = 'hdpi',
+	XHDPI = 'xhdpi',
+	XXHDPI = 'xxhdpi',
+	XXXHDPI = 'xxxhdpi'
+}
+
 export enum SubTitle {
 	// 
 }

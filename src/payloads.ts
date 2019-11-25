@@ -49,7 +49,8 @@ export interface ThumbnailData {
 	alternate: {
 		'#text': string;
 		attr: {
-			platforms: string;
+			styleIds?: string;
+			platforms?: string;
 		};
 	}[];
 }
@@ -94,5 +95,32 @@ export interface SearchResultData {
 export interface SearchResponseData {
 	items: {
 		item: SearchResultData[];
+	};
+}
+
+/** Response from the get show details API call */
+export interface ShowDetailsData {
+	list2d: {
+		analytics: {
+			pageName: string;
+			screenName: string;
+			externalAlphaId: string;
+			action: string;
+			category: string;
+			label: string;
+			cd20: number;
+		};
+		title: 'Detail';
+		logo: ThumbnailData;
+		themes: 'detail';
+		hero: {
+			item: {
+				title: string;
+				subtitle: string;
+			};
+		};
+		pointer: {
+			// 
+		}[];
 	};
 }
