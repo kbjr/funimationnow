@@ -194,3 +194,9 @@ X-Iinfo: 8-67658706-67657388 PNNy RT(1574718322750 10288) q(0 0 0 -1) r(19 19) U
   <pointer>.....</pointer>
 </list2d>
 ```
+
+In addition to the basic detail returned in the search endpoint, this endpoint's response also includes information about some of the episodes and related shows. It also includes the filter information that you can use to get to further episodes (which seasons are available, different versions of the show that are available, etc).
+
+- `/list2d/pointer[0]/longList/palette/filter[*]` - Contains the various filters available for searching episodes, like season.
+- `/list2d/pointer[0]/items[0]` - Contains the "watch next" information (ie, the next episode the given user has queued up)
+- `/list2d/pointer[0]/items[1]/item[*]` - Contains the begining of the episode list (season 1?) to render an initial list from
