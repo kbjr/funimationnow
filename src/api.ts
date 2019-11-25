@@ -184,7 +184,8 @@ export class FunimationApi {
 	 * TODO: Build out wrapper class
 	 *
 	 * @param showId The ID of the show
-	 * @param id The ID of the specific video
+	 * @param videoId The ID of the specific video
+	 * @param audio The ID for the audio language to load
 	 */
 	public async getPlayer(showId: number, videoId: number, audio: number) {
 		const querystring = stringify({
