@@ -10,10 +10,7 @@
         "lib": [
             "esnext",
             "dom"
-        ],
-        "plugins": [{
-            "name": "tslint-language-service"
-        }]
+        ]
     },
     "moduleResolution": "node",
     "typeRoots": [

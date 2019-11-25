@@ -1,5 +1,4 @@
 
-import { Audio } from './enums';
 import { stringify } from 'querystring';
 
 import {
@@ -187,7 +186,7 @@ export class FunimationApi {
 	 * @param showId The ID of the show
 	 * @param id The ID of the specific video
 	 */
-	public async getPlayer(showId: number, videoId: number, audio: Audio) {
+	public async getPlayer(showId: number, videoId: number, audio: number) {
 		const querystring = stringify({
 			territory: this.territory,
 			showId: showId,

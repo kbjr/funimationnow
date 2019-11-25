@@ -1,9 +1,4 @@
 
-export enum Audio {
-	English = 1,
-	Japanese = 2
-}
-
 export enum Platform {
 	Android = 'android',
 	AppleTV = 'appletv',

@@ -8,7 +8,8 @@
     "test": "mocha --opts \"spec/mocha.opts\" \"spec/**/*.ts\"",
     "lint-source": "mkdirp \"reports/lint\" && tslint --out reports/lint/source \"src/**/*.ts\"",
     "lint-tests": "mkdirp \"reports/lint\" && tslint -p spec/tsconfig.json --out reports/lint/tests \"spec/**/*.ts\"",
-    "coverage": "mkdirp reports && nyc --report-dir \"reports/coverage\" npm test"
+    "coverage": "mkdirp reports && nyc --report-dir \"reports/coverage\" npm test",
+    "docs": "typedoc --out ./docs ./src"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "nyc": "^14.1.1",
     "source-map-support": "^0.5.12",
     "ts-node": "^8.3.0",
+    "typedoc": "^0.15.3",
     "typescript": "^3.5.3"
   },
   "nyc": {
