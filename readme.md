@@ -250,4 +250,8 @@ X-Iinfo: 3-55901563-55923983 SNNy RT(1574719643708 156852) q(0 0 0 -1) r(3 3) U1
 
 - `/longList/background` - Contains background images to display when viewing the episode list
 - `/longList/palette/filter[*]` - Contains the various filters available for searching episodes, like season.
-- `/longList/items
+- `/longList/items` - The episodes list
+- `/longList/items/item[*]/thumbnail` - Contains the tumbnail images for the episode
+- `/longList/items/item[*]/legend/filter` - Contains additional filters when playing this episode, like available audio languages
+- `/longList/items/item[*]/pointer/params` - Contains the parameters needed to request the actual video
+- `/longList/items/item[*]/content/description` - Contains the description for the episode
