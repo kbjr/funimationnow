@@ -65,11 +65,11 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-					<h4>Install</h4>
+					<h3>Install</h3>
 				</a>
 				<pre><code class="language-bash">$ npm i --save @k/funimationnow</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h4>Usage</h4>
+					<h3>Usage</h3>
 				</a>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { FunimationApi } <span class="hljs-keyword">from</span> <span class="hljs-string">'@k/funimationnow'</span>;
 
@@ -94,12 +94,12 @@
 				<p>Note: All of the endpoint paths here end with a trailing slash (/). This is actually important. If you don&#39;t include it, you will always get back a 301 response, telling you try again with a trailing slash.</p>
 				<hr>
 				<a href="#login" id="login" style="color: inherit; text-decoration: none;">
-					<h4>Login</h4>
+					<h3>Login</h3>
 				</a>
 				<p>The actual authentication is <em>extremely</em> simple (like, kind of insecure...). It seems that each user has a single, long-lived token assigned to them (by long lived, I mean they never expire). Every time you log in, you just get the same token back. Credentials (email/password) are sent in the payload of a POST request, and the token is sent back, along with some basic user info. Once you have a token, it passed back to the server as an <code>Authorization</code> header, prefixed with &quot;Token &quot; to authenticate requests:</p>
 				<pre><code class="language-http"><span class="hljs-attribute">Authorization</span>: Token ...</code></pre>
 				<a href="#request" id="request" style="color: inherit; text-decoration: none;">
-					<h5>Request</h5>
+					<h4>Request</h4>
 				</a>
 				<pre><code class="language-http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/xml/auth/login/</span> HTTP/1.1
 <span class="hljs-attribute">Host</span>: prod-api-funimationnow.dadcdigital.com
@@ -108,7 +108,7 @@
 
 <span class="markdown">username=email<span class="hljs-emphasis">_address_</span>here&amp;password=<span class="hljs-strong">*****</span><span class="hljs-emphasis">***</span>*</span></code></pre>
 				<a href="#response" id="response" style="color: inherit; text-decoration: none;">
-					<h5>Response</h5>
+					<h4>Response</h4>
 				</a>
 				<pre><code class="language-http">HTTP/1.1 <span class="hljs-number">200</span> OK
 <span class="hljs-attribute">Allow</span>: POST, OPTIONS
@@ -143,17 +143,17 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">authentication</span>&gt;</span></span></code></pre>
 				<hr>
 				<a href="#show-search" id="show-search" style="color: inherit; text-decoration: none;">
-					<h4>Show Search</h4>
+					<h3>Show Search</h3>
 				</a>
 				<p>Searching for shows is fairly straight-forward, passing in a search query (like you might type into the search box in their UI), and you get back a list of matching results. The search query goes in the query string, in a parameter called <code>q</code>. Authentication doesn&#39;t seem to have any impact on the results of this query.</p>
 				<a href="#request-1" id="request-1" style="color: inherit; text-decoration: none;">
-					<h5>Request</h5>
+					<h4>Request</h4>
 				</a>
 				<pre><code class="language-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/xml/longlist/content/page/?id=search&amp;q=fate</span> HTTP/1.1
 <span class="hljs-attribute">Host</span>: prod-api-funimationnow.dadcdigital.com
 <span class="hljs-attribute">Accept</span>: */*</code></pre>
 				<a href="#response-1" id="response-1" style="color: inherit; text-decoration: none;">
-					<h5>Response</h5>
+					<h4>Response</h4>
 				</a>
 				<pre><code class="language-http">HTTP/1.1 <span class="hljs-number">200</span> OK
 <span class="hljs-attribute">Content-Language</span>: en
@@ -188,12 +188,12 @@
 				</ul>
 				<hr>
 				<a href="#get-show-details" id="get-show-details" style="color: inherit; text-decoration: none;">
-					<h4>Get Show Details</h4>
+					<h3>Get Show Details</h3>
 				</a>
 				<p>To get further details about a show, you need the ID assigned to the show (such as from the search endpoint above). Authentication does seem to have an impact on what you get back from this endpoint, but I haven&#39;t dug in far enough to see what, exactly, is different. The core details do come back regardless of authentication.</p>
 				<p>The show ID goes in the query string, in the <code>pk</code> parameter.</p>
 				<a href="#request-2" id="request-2" style="color: inherit; text-decoration: none;">
-					<h5>Request</h5>
+					<h4>Request</h4>
 				</a>
 				<pre><code class="language-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/xml/detail/?territory=US&amp;pk=29962</span> HTTP/1.1
 <span class="hljs-attribute">Host</span>: prod-api-funimationnow.dadcdigital.com
@@ -231,19 +231,19 @@
 				</ul>
 				<hr>
 				<a href="#get-episodes" id="get-episodes" style="color: inherit; text-decoration: none;">
-					<h4>Get Episodes</h4>
+					<h3>Get Episodes</h3>
 				</a>
 				<p>To get a list of episodes, you need to know 2 things: the show ID, and what part of the show you want (eg. what season, etc). The available filters can be found in the show details endpoint, or they are also available in any payload from the get episodes endpoint (so you can request without filters, then make additional requests with filters to get more results). Authentication does seem to have an impact on what you get back from this endpoint, but I haven&#39;t dug in far enough to see what, exactly, is different. The core details do come back regardless of authentication.</p>
 				<p>The show ID goes in the query string, in the <code>show</code> parameter. Additional filters are also passed in the query string, under the parameter names listed in the payload.</p>
 				<a href="#request-3" id="request-3" style="color: inherit; text-decoration: none;">
-					<h5>Request</h5>
+					<h4>Request</h4>
 				</a>
 				<pre><code class="language-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/xml/longlist/episodes/?territory=US&amp;show=37745</span> HTTP/1.1
 <span class="hljs-attribute">Host</span>: prod-api-funimationnow.dadcdigital.com
 <span class="hljs-attribute">Accept</span>: */*
 <span class="hljs-attribute">Authorization</span>: Token .....</code></pre>
 				<a href="#response-3" id="response-3" style="color: inherit; text-decoration: none;">
-					<h5>Response</h5>
+					<h4>Response</h4>
 				</a>
 				<pre><code class="language-http">HTTP/1.1 <span class="hljs-number">200</span> OK
 <span class="hljs-attribute">Content-Language</span>: en

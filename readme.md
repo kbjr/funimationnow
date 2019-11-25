@@ -1,11 +1,11 @@
 
-#### Install
+### Install
 
 ```bash
 $ npm i --save @k/funimationnow
 ```
 
-#### Usage
+### Usage
 
 ```typescript
 import { FunimationApi } from '@k/funimationnow';
@@ -41,7 +41,7 @@ Note: All of the endpoint paths here end with a trailing slash (/). This is actu
 
 ---
 
-#### Login
+### Login
 
 The actual authentication is _extremely_ simple (like, kind of insecure...). It seems that each user has a single, long-lived token assigned to them (by long lived, I mean they never expire). Every time you log in, you just get the same token back. Credentials (email/password) are sent in the payload of a POST request, and the token is sent back, along with some basic user info. Once you have a token, it passed back to the server as an `Authorization` header, prefixed with "Token " to authenticate requests:
 
@@ -49,7 +49,7 @@ The actual authentication is _extremely_ simple (like, kind of insecure...). It 
 Authorization: Token ...
 ```
 
-##### Request
+#### Request
 
 ```http
 POST /xml/auth/login/ HTTP/1.1
@@ -60,7 +60,7 @@ Content-Type: application/x-www-form-urlencoded
 username=email_address_here&password=*********
 ```
 
-##### Response
+#### Response
 
 ```http
 HTTP/1.1 200 OK
@@ -101,12 +101,12 @@ X-Iinfo: 14-39338901-39326001 PNNy RT(1574651467757 58) q(0 0 0 0) r(5 5) U6
 
 ---
 
-#### Show Search
+### Show Search
 
 Searching for shows is fairly straight-forward, passing in a search query (like you might type into the search box in their UI), and you get back a list of matching results. The search query goes in the query string, in a parameter called `q`. Authentication doesn't seem to have any impact on the results of this query.
 
 
-##### Request
+#### Request
 
 ```http
 GET /xml/longlist/content/page/?id=search&q=fate HTTP/1.1
@@ -114,7 +114,7 @@ Host: prod-api-funimationnow.dadcdigital.com
 Accept: */*
 ```
 
-##### Response
+#### Response
 
 ```http
 HTTP/1.1 200 OK
@@ -155,13 +155,13 @@ The most interesting paths in the response are:
 
 ---
 
-#### Get Show Details
+### Get Show Details
 
 To get further details about a show, you need the ID assigned to the show (such as from the search endpoint above). Authentication does seem to have an impact on what you get back from this endpoint, but I haven't dug in far enough to see what, exactly, is different. The core details do come back regardless of authentication.
 
 The show ID goes in the query string, in the `pk` parameter.
 
-##### Request
+#### Request
 
 ```http
 GET /xml/detail/?territory=US&pk=29962 HTTP/1.1
@@ -207,13 +207,13 @@ In addition to the basic detail returned in the search endpoint, this endpoint's
 
 ---
 
-#### Get Episodes
+### Get Episodes
 
 To get a list of episodes, you need to know 2 things: the show ID, and what part of the show you want (eg. what season, etc). The available filters can be found in the show details endpoint, or they are also available in any payload from the get episodes endpoint (so you can request without filters, then make additional requests with filters to get more results). Authentication does seem to have an impact on what you get back from this endpoint, but I haven't dug in far enough to see what, exactly, is different. The core details do come back regardless of authentication.
 
 The show ID goes in the query string, in the `show` parameter. Additional filters are also passed in the query string, under the parameter names listed in the payload.
 
-##### Request
+#### Request
 
 ```http
 GET /xml/longlist/episodes/?territory=US&show=37745 HTTP/1.1
@@ -222,7 +222,7 @@ Accept: */*
 Authorization: Token .....
 ```
 
-##### Response
+#### Response
 
 ```http
 HTTP/1.1 200 OK
