@@ -2,3 +2,6 @@ node_modules
 build
 reports
 .nyc_output
+parse-xml.js
+data.json
+data.xml
