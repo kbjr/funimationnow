@@ -37,7 +37,7 @@ export interface LoginResponseData {
 		token: string;
 		anonymous: 'true' | 'false';
 		parameters: {
-			territory: Territory;
+			territory: string;
 			header: {
 				userName: string;
 				userType: UserType;

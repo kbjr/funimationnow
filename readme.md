@@ -15,7 +15,8 @@ const api = new FunimationApi({
 });
 
 // Login with user credentials
-await api.login('username', 'password');
+// `user.authentication.token` contains the auth token if you need to hold that for something
+const user = await api.login('username', 'password');
 
 // Search for shows
 const shows = await api.search('Fate');
@@ -200,3 +201,53 @@ In addition to the basic detail returned in the search endpoint, this endpoint's
 - `/list2d/pointer[0]/longList/palette/filter[*]` - Contains the various filters available for searching episodes, like season.
 - `/list2d/pointer[0]/items[0]` - Contains the "watch next" information (ie, the next episode the given user has queued up)
 - `/list2d/pointer[0]/items[1]/item[*]` - Contains the begining of the episode list (season 1?) to render an initial list from
+
+
+
+
+---
+
+#### Get Episodes
+
+To get a list of episodes, you need to know 2 things: the show ID, and what part of the show you want (eg. what season, etc). The available filters can be found in the show details endpoint, or they are also available in any payload from the get episodes endpoint (so you can request without filters, then make additional requests with filters to get more results). Authentication does seem to have an impact on what you get back from this endpoint, but I haven't dug in far enough to see what, exactly, is different. The core details do come back regardless of authentication.
+
+The show ID goes in the query string, in the `show` parameter. Additional filters are also passed in the query string, under the parameter names listed in the payload.
+
+##### Request
+
+```http
+GET /xml/longlist/episodes/?territory=US&show=37745 HTTP/1.1
+Host: prod-api-funimationnow.dadcdigital.com
+Accept: */*
+Authorization: Token .....
+```
+
+##### Response
+
+```http
+HTTP/1.1 200 OK
+Content-Language: en
+Content-Type: application/xhtml+xml
+Date: Mon, 25 Nov 2019 22:10:00 GMT
+Server: nginx
+Vary: Accept-Language, Cookie
+X-FRAME-OPTIONS: SAMEORIGIN
+transfer-encoding: chunked
+Connection: keep-alive
+X-CDN: Incapsula
+X-Iinfo: 3-55901563-55923983 SNNy RT(1574719643708 156852) q(0 0 0 -1) r(3 3) U16
+
+<longList>
+  <background>.....</background>
+  <themes>vertical</themes>
+  <palette>
+    <filter>.....</filter>
+    <filter>.....</filter>
+  </palette>
+  <items>.....</items>
+</longList>
+```
+
+- `/longList/background` - Contains background images to display when viewing the episode list
+- `/longList/palette/filter[*]` - Contains the various filters available for searching episodes, like season.
+- `/longList/items

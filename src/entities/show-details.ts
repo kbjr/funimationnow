@@ -34,7 +34,7 @@ export class ShowDetails {
 		this.releaseYear = hero.content.metadata.releaseYear;
 
 		const episodeList = findEpisodes(raw);
-		const episodes = fineEpisodeArray(episodeList);
+		const [ episodes, watchNext ] = splitEpisodeData(episodeList);
 
 		// 
 
@@ -54,7 +54,7 @@ const findEpisodes = (raw: ShowDetailsData) : ShowDetailsEpisodesListData => {
 	});
 };
 
-const fineEpisodeArray = (raw: ShowDetailsEpisodesListData) : [ EpisodeDetails[], WatchNextData ] => {
+const splitEpisodeData = (raw: ShowDetailsEpisodesListData) : [ EpisodeDetails[], WatchNextData ] => {
 	const result: [ EpisodeDetails[], WatchNextData ] = [ null, null ];
 
 	for (let i = 0; i < raw.longList.items.length; i++) {

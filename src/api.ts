@@ -150,17 +150,15 @@ export class FunimationApi {
 			throw new HttpError(res);
 		}
 
-		const result = new ShowDetails(res.payload);
-
-		console.log(result);
-
-		return result;
+		return new ShowDetails(res.payload);
 	}
 
 	/**
 	 * Get the episode list for a given show. Optionally, a query can be provided to control
 	 * which episodes to retrieve (like which season), based on the filters defined in the
 	 * response itself.
+	 *
+	 * TODO: Build out payload interface and wrapper class
 	 *
 	 * @param showId The ID of the show to load episodes for
 	 * @param query Any additional query filters
@@ -182,6 +180,8 @@ export class FunimationApi {
 
 	/**
 	 * Get the video player details for a specific video
+	 *
+	 * TODO: Build out payload interface and wrapper class
 	 *
 	 * @param showId The ID of the show
 	 * @param id The ID of the specific video
