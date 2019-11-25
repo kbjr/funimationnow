@@ -14,7 +14,8 @@ import {
 import {
 	LoginResponseData,
 	SearchResponseData,
-	ShowDetailsData
+	ShowDetailsData,
+	PlayerData
 } from './payloads';
 
 import {
@@ -181,7 +182,7 @@ export class FunimationApi {
 	/**
 	 * Get the video player details for a specific video
 	 *
-	 * TODO: Build out payload interface and wrapper class
+	 * TODO: Build out wrapper class
 	 *
 	 * @param showId The ID of the show
 	 * @param id The ID of the specific video
@@ -195,7 +196,7 @@ export class FunimationApi {
 			watched: 0
 		});
 
-		const res = await this.requestXml<any>('GET', `/xml/player/?${querystring}`);
+		const res = await this.requestXml<PlayerData>('GET', `/xml/player/?${querystring}`);
 
 		if (res.status !== 200) {
 			throw new HttpError(res);

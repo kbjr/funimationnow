@@ -296,3 +296,65 @@ export interface ShowDetailsData {
 		pointer: [ ShowDetailsEpisodesListData, ShowDetailsSimilarShowsData ];
 	};
 }
+
+/** Response from the get episodes API call */
+export interface EpisodeListData {
+	// TODO
+}
+
+/** Response from the get player API call */
+export interface PlayerData {
+	player: {
+		customPanel: {
+			// Don't really care about this, it just contains UI for some specific apps
+		};
+		item: {
+			/** Contains all of the basic metadata about the video */
+			video: {
+				id: number;
+				title: string;
+				subtitle: string;
+				thumbnail: string;
+				starRating: StarRatingData;
+				content: {
+					metadata: {
+						season: string;
+						episode: string;
+						showName: string;
+						duration: number;
+						showId: number;
+						seasonId: number;
+						episodeId: number;
+						audio: string;
+						contentGenre: string;
+						closedCaptionLanguage: string;
+						closedCaptionLabel: string;
+					};
+				};
+			};
+			ratings: {
+				tv: RatingData | RatingData[];
+			};
+			/** Contains the actual streaming info, including the link to the .m3u8 file */
+			hls: {
+				/** The actual .m3u8 file URL */
+				url: string;
+				closedCaptionUrl: {
+					/** The URL to the .vtt closed caption file */
+					'#text': string;
+				};
+				isEvent: boolean;
+				analytics: {
+					label: string;
+					// There's also a bunch of other data here, but I'm not sure how to interpret it
+				};
+			};
+			related: {
+				// Don't really care
+			};
+			history: {
+				// Don't really care
+			};
+		};
+	};
+}
