@@ -1,4 +1,5 @@
 
+import { map } from '../utils';
 import { Rating } from './rating';
 import { Thumbnail } from './thumbnail';
 import { SearchResultData } from '../payloads';
@@ -26,10 +27,7 @@ export class SearchResult {
 		this.format = raw.content.metadata.format;
 		this.releaseYear = raw.content.metadata.releaseYear;
 		this.added = parseRecentlyAdded(raw.content.metadata.recentlyAdded);
-
-		this.ratings = raw.ratings.tv.map((rating) => {
-			return new Rating(rating);
-		});
+		this.ratings = map(raw.ratings.tv, (rating) => new Rating(rating));
 
 		this.analytics = Object.freeze({
 			category: raw.analytics.category,

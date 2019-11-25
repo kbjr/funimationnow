@@ -1,4 +1,5 @@
 
+import { map } from '../utils';
 import { Rating } from './rating';
 import { Thumbnail } from './thumbnail';
 import { ShowDetailsData, ShowDetailsEpisodesData, ShowDetailsEpisodesListData, ShowDetailsSimilarShowsData, WatchNextData } from '../payloads';
@@ -28,7 +29,7 @@ export class ShowDetails {
 		this.subtitle = hero.subtitle;
 		this.heroThumbnail = new Thumbnail(hero.thumbnail);
 		this.starRating = hero.starRating.rating;
-		this.ratings = hero.ratings.map((rating) => new Rating(rating));
+		this.ratings = map(hero.ratings.tv, (rating) => new Rating(rating));
 		this.description = hero.content.description;
 		this.format = hero.content.metadata.format;
 		this.releaseYear = hero.content.metadata.releaseYear;
@@ -36,15 +37,38 @@ export class ShowDetails {
 		const episodeList = findEpisodes(raw);
 		const [ episodes, watchNext ] = splitEpisodeData(episodeList);
 
-		// 
+		this.watchNextVideoId = getEpisodeVideoId(watchNext.pointer.params);
+		this.episodes = episodes.map((episode) => new ShowDetailsEpisode(episode));
 
 		Object.freeze(this);
 	}
 }
 
 export class ShowDetailsEpisode {
+	public readonly title: string;
+	public readonly subtitle: string;
+	public readonly videoId: number;
+	public readonly starRating: number;
+	public readonly ratings: Rating[];
+	public readonly description: string;
+	public readonly format: string;
+	public readonly languages: string;
+	public readonly duration: number;
+	public readonly episodeNumber: number;
+
 	constructor(raw: EpisodeDetails) {
-		// 
+		this.title = raw.title;
+		this.subtitle = raw.subtitle;
+		this.videoId = getEpisodeVideoId(raw.pointer.params);
+		this.starRating = raw.starRating.rating;
+		this.ratings = map(raw.ratings.tv, (rating) => new Rating(rating));
+		this.description = raw.content.description;
+		this.format = raw.content.metadata.format;
+		this.languages = raw.content.metadata.languages;
+		this.duration = raw.content.metadata.duration;
+		this.episodeNumber = raw.content.metadata.episodeNumber;
+
+		Object.freeze(this);
 	}
 }
 
@@ -74,4 +98,14 @@ const splitEpisodeData = (raw: ShowDetailsEpisodesListData) : [ EpisodeDetails[]
 	}).item;
 
 	return result;
+};
+
+const idPattern = /(^|;)id=([0-9]+)(&|$)/;
+
+const getEpisodeVideoId = (params: string) : number => {
+	const match = idPattern.exec(params);
+
+	if (match) {
+		return parseInt(match[2], 10);
+	}
 };

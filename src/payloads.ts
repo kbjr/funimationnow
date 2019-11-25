@@ -72,7 +72,7 @@ export interface SearchResultData {
 	id: number;
 	starRating: StarRatingData;
 	ratings: {
-		tv: RatingData[];
+		tv: RatingData | RatingData[];
 	};
 	content: {
 		metadata: {
@@ -202,6 +202,29 @@ export interface ShowDetailsEpisodesData {
 				};
 			};
 		};
+		pointer: {
+			target: 'player';
+			path: 'player/';
+			params: string;
+			themes: 'fullsizePlayer';
+			alternate: {
+				// Don't care at the moment....
+			};
+		};
+		ratings: {
+			tv: RatingData | RatingData[];
+		};
+		starRating: StarRatingData;
+		content: {
+			description: string;
+			metadata: {
+				format: string;
+				languages: string;
+				duration: number;
+				episodeNumber: number;
+				contentType: string;
+			};
+		};
 	}[];
 }
 
@@ -258,7 +281,9 @@ export interface ShowDetailsData {
 				thumbnail: ThumbnailData;
 				themes: 'hero';
 				starRating: StarRatingData;
-				ratings: RatingData[];
+				ratings: {
+					tv: RatingData | RatingData[];
+				};
 				content: {
 					description: string;
 					metadata: {
