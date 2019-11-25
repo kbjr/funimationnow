@@ -169,7 +169,7 @@ export class FunimationApi {
 			show: showId
 		}));
 
-		const res = await this.requestXml('GET', `/xml/longlist/episodes/?${querystring}`);
+		const res = await this.requestXml<any>('GET', `/xml/longlist/episodes/?${querystring}`);
 
 		if (res.status !== 200) {
 			throw new HttpError(res);
@@ -195,12 +195,12 @@ export class FunimationApi {
 			watched: 0
 		});
 
-		const res = await this.requestXml('GET', `/xml/player/?${querystring}`);
+		const res = await this.requestXml<any>('GET', `/xml/player/?${querystring}`);
 
 		if (res.status !== 200) {
 			throw new HttpError(res);
 		}
 
-		console.log(res);
+		console.log(res.payload.player);
 	}
 }

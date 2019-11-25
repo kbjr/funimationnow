@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "fast-xml-parser": "^3.15.0",
-    "form-urlencoded": "^4.1.0"
+    "form-urlencoded": "^4.1.0",
+    "he": "^1.2.0"
   }
 }

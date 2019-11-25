@@ -2,7 +2,7 @@
 import { map } from '../utils';
 import { Rating } from './rating';
 import { Thumbnail } from './thumbnail';
-import { ShowDetailsData, ShowDetailsEpisodesData, ShowDetailsEpisodesListData, ShowDetailsSimilarShowsData, WatchNextData } from '../payloads';
+import { ShowDetailsData, ShowDetailsEpisodesData, ShowDetailsEpisodesListData, WatchNextData } from '../payloads';
 
 type EpisodeDetails = ShowDetailsEpisodesData['item'][0];
 

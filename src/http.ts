@@ -3,6 +3,7 @@ import { parse } from 'fast-xml-parser';
 import { parse as parseUrl } from 'url';
 import { IncomingHttpHeaders } from 'http';
 import { request, RequestOptions } from 'https';
+import { decode } from 'he';
 import urlencode from 'form-urlencoded';
 
 export { RequestOptions } from 'https';
@@ -137,7 +138,9 @@ const xmlParse = <T>(xml: string) : T => {
 		attrNodeName: 'attr',
 		textNodeName: '#text',
 		ignoreAttributes: false,
-		parseAttributeValue: true
+		parseAttributeValue: true,
+		attrValueProcessor: (val, attrName) => decode(val, {isAttributeValue: true}),
+		tagValueProcessor: (val, tagName) => decode(val),
 	});
 };
 
