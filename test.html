@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+	<video controls>
+		<!-- Chrome doesn't like this, because it doesn't follow same-origin policy -->
+		<track label="English" kind="subtitles" srclang="en" src="https://d132fumi6di1wa.cloudfront.net/FunimationStoreFront/1301113/Japanese/1301113_Japanese_71316d52-e3ab-e811-8175-020165574d09.vtt" default>
+	</video>
+	<script>
+		const video = document.querySelector('video');
+		const src = 'https://10fad4b4a7894c10a47117386cbbce08.dlvr1.net/FunimationStoreFront/1301113/Japanese/1301113_Japanese_79316d52-e3ab-e811-8175-020165574d09.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMTMyZnVtaTZkaTF3YS5jbG91ZGZyb250Lm5ldC8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTc0NzUxMDkxfX19XX0_&Signature=hgFOO~trElq2ZNZZGchRAXvZbsqA74hHJF89c618yl2-mcAg0-K~8K6Be4NPexyrGInlBImHE~HnX77FpBVGNq7m2jKLz8wkp0PibqvkLzKHr5pzOssOfq~3NRvopHDojB2wbUXXgQdaTBPeCl~zNL14ZiU6TbxRJ5O-UE-Zzn9CQ7A9J-JUhFskwPTXTVo~rqO1i~3rZDl-gtiXovPEN5gjrjW1iUnO5IV8EwzCBCPB-OoV1rkkIrL~oh5-QrFQaEV1OAi7XowPC9wtHmpef3vCx3FyAbp0PyTt-F8pIp0QFB555XgWop6Bwl-mVc4m8CDAj~eV2UH3EzIylxpMdA__&Key-Pair-Id=DLVR';
+
+		if (Hls.isSupported()) {
+			const hls = new Hls({
+				enableWebVTT: true
+			});
+
+			hls.loadSource(src);
+			hls.attachMedia(video);
+			hls.on(Hls.Events.MANIFEST_PARSED, () => {
+				video.play();
+			});
+		}
+
+		else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+			video.src = src;
+			video.addEventListener('canplay', () => {
+				video.play();
+			});
+		}
+	</script>
+</body>
+</html>
